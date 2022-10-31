@@ -3,7 +3,9 @@ import { AuthContext } from "../context/AuthContext";
 import { ChatContext } from "../context/ChatContext";
 //import add from "../img/a5.jpg";
 
+
 const Message = ({message}) => {
+
 
     const {currentUser} = useContext(AuthContext)
     const {data} = useContext(ChatContext)
@@ -29,7 +31,7 @@ const Message = ({message}) => {
          date = 'HOY';
       }
     
-
+    //const imgObj =  message.img.getElementById('img');
     return (
         <div 
             ref={ref}
@@ -46,8 +48,14 @@ const Message = ({message}) => {
                     <p>{date1}</p>
                 </div>
             <div className="messageContent">
-                <p>{message.text}</p>
-                {message.img && <img src={message.img} alt="" />}
+                <p>{message.text 
+                    ? message.text 
+                    : message.img 
+                        ?
+                        <img src={message.img} alt="" /> 
+                        : message.file
+                    }
+                    </p>
             </div>
         </div>
     )
